@@ -44,12 +44,12 @@ const Navbar = () => {
             <motion.div
               whileHover={{ rotate: 360 }}
               transition={{ duration: 0.6 }}
-              className="w-10 h-10 bg-gradient-to-br from-primary-500 to-secondary-500 rounded-xl flex items-center justify-center shadow-lg"
+              className="w-10 h-10 shrink-0 bg-gradient-to-br from-primary-500 to-secondary-500 rounded-xl flex items-center justify-center shadow-lg"
             >
               <span className="text-white font-bold text-xl">E</span>
             </motion.div>
-            <div>
-              <h1 className="font-display text-2xl font-bold text-gradient">
+            <div className="whitespace-nowrap">
+              <h1 className="font-display text-lg sm:text-2xl font-bold text-gradient">
                 Easwari Traders
               </h1>
               <p className="text-xs text-gray-500 dark:text-gray-400">Premium Protection</p>

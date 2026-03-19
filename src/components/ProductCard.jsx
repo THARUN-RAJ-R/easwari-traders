@@ -1,10 +1,11 @@
 import { motion } from 'framer-motion';
 import { Heart, ShoppingCart, Eye } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 
 const ProductCard = ({ product, index }) => {
   const { addToCart, toggleWishlist, isInWishlist } = useCart();
+  const navigate = useNavigate();
 
   return (
     <motion.div
@@ -62,15 +63,14 @@ const ProductCard = ({ product, index }) => {
                 />
               </motion.button>
 
-              <Link to={`/product/${product.id}`}>
-                <motion.button
-                  whileHover={{ scale: 1.1, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="w-12 h-12 bg-white rounded-full flex items-center justify-center hover:bg-primary-50 transition-colors"
-                >
-                  <Eye className="w-5 h-5 text-gray-700" />
-                </motion.button>
-              </Link>
+              <motion.button
+                whileHover={{ scale: 1.1, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={(e) => { e.preventDefault(); navigate(`/product/${product.id}`); }}
+                className="w-12 h-12 bg-white rounded-full flex items-center justify-center hover:bg-primary-50 transition-colors"
+              >
+                <Eye className="w-5 h-5 text-gray-700" />
+              </motion.button>
 
               <motion.button
                 whileHover={{ scale: 1.1, y: -2 }}
@@ -95,11 +95,12 @@ const ProductCard = ({ product, index }) => {
             </span>
           </div>
           
-          <Link to={`/product/${product.id}`}>
-            <h3 className="font-semibold text-lg mb-2 text-gray-900 dark:text-white hover:text-primary-600 dark:hover:text-primary-400 transition-colors line-clamp-1">
-              {product.name}
-            </h3>
-          </Link>
+          <h3
+            onClick={() => navigate(`/product/${product.id}`)}
+            className="font-semibold text-lg mb-2 text-gray-900 dark:text-white hover:text-primary-600 dark:hover:text-primary-400 transition-colors line-clamp-1 cursor-pointer"
+          >
+            {product.name}
+          </h3>
           
           <p className="text-sm text-gray-600 dark:text-gray-400 mb-3 line-clamp-2">
             {product.description}
